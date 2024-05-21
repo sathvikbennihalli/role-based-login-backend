@@ -12,7 +12,6 @@ import getCompany from "./routes/api/getCompany.js";
 import addUser from "./routes/api/addUser.js";
 import getUsers from "./routes/api/getUsers.js";
 import logout from "./routes/api/logout.js";
-import verifyUser from "./middleware/authMiddleware.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
