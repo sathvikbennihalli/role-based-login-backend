@@ -1,5 +1,5 @@
 import db from "../config/database.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export const registerUser = (req, res) => {
   const salt = 10;
