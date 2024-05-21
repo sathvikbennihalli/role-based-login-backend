@@ -1,0 +1,48 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Mono", monospace; /* Monospaced font */
+  background-color: #242424; /* Dark background color */
+  color: #fff; /* White text color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.content-box {
+  background-color: #1a1a1a; /* Darker box background color */
+  padding: 40px; /* Increased padding for larger text box */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Box shadow for depth effect */
+  text-align: center;
+}
+
+h1 {
+  font-family: "Roboto Mono", monospace; /* Monospaced font */
+  font-size: 5rem; /* Increased font size for larger text */
+  margin: 0 0 20px; /* Add margin to separate the text */
+  color: #ffd700; /* Bold yellow text color */
+}
+
+p {
+  font-size: 2rem; /* Font size for the error message */
+  margin: 0 0 20px; /* Add margin to separate the text */
+}
+
+a {
+  color: #fff; /* White text color */
+  text-decoration: none; /* Remove underline */
+  font-size: 1.5rem; /* Font size for the link */
+}
+
+a:hover {
+  text-decoration: underline; /* Add underline on hover */
+}
