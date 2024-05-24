@@ -3,6 +3,8 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
+import dotenv from "dotenv";
+
 import rootRouter from "./routes/api/root.js";
 import login from "./routes/api/login.js";
 import authenticate from "./routes/api/authenticate.js";
@@ -12,25 +14,44 @@ import getCompany from "./routes/api/getCompany.js";
 import addUser from "./routes/api/addUser.js";
 import getUsers from "./routes/api/getUsers.js";
 import logout from "./routes/api/logout.js";
- 
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
 
+const allowedOrigins = [
+  "http://localhost:3000", // Local development URL
+  "https://6e9669a5.role-based-login-frontend.pages.dev", // Production frontend URL
+];
+
+// Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
+
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    methods: ["POST", "GET"],
+    origin: function (origin, callback) {
+      // Allow requests with no origin, e.g., mobile apps or curl requests
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        const msg = `The CORS policy for this site does not allow access from the specified Origin.`;
+        return callback(new Error(msg), false);
+      }
+      return callback(null, true);
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
   })
 );
-app.use(cookieParser());
 
+// Static files
 app.use("/", express.static(join(__dirname, "public")));
+
+// Routes
 app.use("/", rootRouter);
 app.use("/authenticate", authenticate);
 app.use("/register", register);
@@ -40,6 +61,8 @@ app.use("/get-companies", getCompany);
 app.use("/logout", logout);
 app.use("/add-user", addUser);
 app.use("/view-users", getUsers);
+
+// 404 handler
 app.all("*", (req, res) => {
   res.status(404);
   if (req.accepts("html")) {
@@ -51,6 +74,7 @@ app.all("*", (req, res) => {
   }
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
