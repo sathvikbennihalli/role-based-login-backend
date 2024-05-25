@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
-  console.log(req);
-  console.log("Token:", token); // Log the token to verify its presence
+  // console.log(req);
+  // console.log("Token:", token); // Log the token to verify its presence
   if (!token) {
     return res.json({ Error: "You are not authenticated" });
   }

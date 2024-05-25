@@ -18,16 +18,14 @@ export const loginUser = (req, res) => {
             const token = jwt.sign({ user }, "jwt-secret-key", {
               expiresIn: "1d",
             });
-            // res.cookie("token", token, {
-            //   httpOnly: true,
-            //   secure: process.env.NODE_ENV === "production",
-            //   sameSite: "strict",
-            // });
+            res.cookie("token", token, {
+              httpOnly: true,
+              secure: process.env.NODE_ENV === "production",
+              sameSite: "strict",
+            });
             return res.json({
               Status: "Success",
               role: role,
-
-              token: token,
             });
           } else {
             return res.json({ Error: "Password not matched" });
