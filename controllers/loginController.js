@@ -23,9 +23,12 @@ export const loginUser = (req, res) => {
             //   secure: process.env.NODE_ENV === "production",
             //   sameSite: "strict",
             // });
-            return res.json({ Status: "Success", role: role,
-            token: token
-          });
+            return res.json({
+              Status: "Success",
+              role: role,
+
+              token: token,
+            });
           } else {
             return res.json({ Error: "Password not matched" });
           }

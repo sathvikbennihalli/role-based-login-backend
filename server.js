@@ -25,7 +25,8 @@ const port = process.env.PORT || 3001;
 const allowedOrigins = [
   "http://localhost:3000", // Local development URL
   "https://6e9669a5.role-based-login-frontend.pages.dev", // Production frontend URL
-  "https://role-based-login-frontend.pages.dev"
+  "https://role-based-login-frontend.pages.dev",
+  "https://lms-frontend.digiphins.in",
 ];
 
 // Middleware
